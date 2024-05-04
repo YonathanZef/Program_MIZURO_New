@@ -2,7 +2,7 @@
 from pymavlink import mavutil
 
 # Create the connection
-master = mavutil.mavlink_connection('')
+master = mavutil.mavlink_connection("/dev/ttyAMA0", baud=57600)
 # Wait a heartbeat before sending commands
 master.wait_heartbeat()
 

@@ -1,0 +1,8 @@
+TUTORIAL MEMAHAMI PROGRAM
+
+1.) Sebelum memahami program ini kalian harus membaca document berikut
+    pymavlink: https://mavlink.io/en/messages/common.html#RC_CHANNELS_OVERRIDE
+    ArduSub: https://www.ardusub.com/developers/pymavlink.html
+2.) Setelah kalian membaca semua dokumentasi tersebut pasti paham. awokawokawok :)
+
+3.) LANGKAH TERAKHIRR WAJIB DI BACAAAAAAA........ Wajib makan nasi padang.
