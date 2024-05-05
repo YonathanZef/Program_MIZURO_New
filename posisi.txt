@@ -1,0 +1,3 @@
+kiri = 6
+tengah = 290 - 350
+kanan = 600
