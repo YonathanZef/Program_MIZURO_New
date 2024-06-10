@@ -30,6 +30,5 @@ def stabilize():
         mode_id)
     print('Mode Stabilize')
 
-stabilize()
 
 

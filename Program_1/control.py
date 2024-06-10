@@ -23,13 +23,15 @@ def set_rc_channel_pwm(channel_id, pwm=1500):
 
 # fungsi bergerak ke kanan
 def move_kanan():
-    set_rc_channel_pwm(6, 1600)
+    set_rc_channel_pwm(6, 1700)
     set_rc_channel_pwm(5, 1500)
 # fungsi bergerak ke kiri
 def move_kiri():
-    set_rc_channel_pwm(6, 1400)
+    set_rc_channel_pwm(6, 1300)
     set_rc_channel_pwm(5, 1500)
 # fungsi bergerak maju
 def move_maju():
-    set_rc_channel_pwm(5, 1600)
+    set_rc_channel_pwm(5, 1700)
     set_rc_channel_pwm(6, 1500)
+
+move_maju()
