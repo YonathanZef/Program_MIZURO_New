@@ -39,5 +39,5 @@ def kanan_laterall():
 
     # Turun
     set_rc_channel_pwm(3,1200)
-     # Laterall Kanan
+     # Laterall Kanan 
     set_rc_channel_pwm(6,1700)
