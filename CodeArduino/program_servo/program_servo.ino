@@ -15,9 +15,12 @@ float distance;
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+#define BUTTON_PIN 2
 
 Servo myservo;
 int servoPin = 3;
+int prev_button_state = LOW;
+int button_state;
 
 void setup()
 {
@@ -29,6 +32,7 @@ void setup()
   display.clearDisplay();
   display.setTextColor(WHITE);
   delay(1000);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
 }
 
 void loop()
@@ -61,9 +65,23 @@ void loop()
   display.print(String(distance)+" cm");
   display.display();
 
-  if(distance >= 20){
+  button_state = digitalRead(BUTTON_PIN);
+  
+  if (prev_button_state == HIGH && button_state == LOW){
+    Serial.println("Tombol servo ditekan");
+  }
+  else if (prev_button_state == LOW && button_state == HIGH){
+    Serial.println("Tombol servo released");
+  }
+  else if (distance <= 20){
     myservo.write(90);
   }
+  else{
+    myservo.write(0);   
+  }
+
+  prev_button_state = button_state;
+  
       }
      }
      delay(100);
