@@ -68,16 +68,23 @@ void loop()
   button_state = digitalRead(BUTTON_PIN);
   
   if (prev_button_state == HIGH && button_state == LOW){
-    Serial.println("Tombol servo ditekan");
+    Serial.println("YY");
+    myservo.write(90);
+    delay(2000);
   }
   else if (prev_button_state == LOW && button_state == HIGH){
-    Serial.println("Tombol servo released");
+    Serial.println("NN");
+    myservo.write(0);
   }
-  else if (distance <= 20){
+  else if (distance < 20){
     myservo.write(90);
+    Serial.println("DD");
+    delay(2000);
   }
   else{
-    myservo.write(0);   
+    myservo.write(0);
+    Serial.println("OO");
+
   }
 
   prev_button_state = button_state;
