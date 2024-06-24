@@ -2,8 +2,8 @@
 import time
 
 from pymavlink import mavutil
-
-def servo_opn():
+# 1000,2000,50 = open || 2000,1000,-50 = close
+def servo(pwmstr, pwmend, iterasi):
     def set_servo_pwm(servo_n, microseconds):
 
         # master.set_servo(servo_n+8, microseconds) or:
@@ -22,6 +22,6 @@ def servo_opn():
     master.wait_heartbeat()
 
     # Servo bergerak dari min ke max (close)
-    for us in range(1100, 1900, 50):
+    for us in range(pwmstr, pwmend, iterasi):
         set_servo_pwm(3, us)
         time.sleep(0.125)

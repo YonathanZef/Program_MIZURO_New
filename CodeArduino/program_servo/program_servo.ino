@@ -83,7 +83,7 @@ void loop()
   }
   else{
     myservo.write(0);
-    Serial.println("OO");
+    
 
   }
 
