@@ -42,21 +42,21 @@ def set_target_depth(depth):
         #  (all not supported yet, ignored in GCS Mavlink)
     )
 
-def set_target_attitude(roll, pitch, yaw):
-    """ Sets the target attitude while in depth-hold mode.
+# def set_target_attitude(roll, pitch, yaw):
+#     """ Sets the target attitude while in depth-hold mode.
 
-    'roll', 'pitch', and 'yaw' are angles in degrees.
+#     'roll', 'pitch', and 'yaw' are angles in degrees.
 
-    """
-    master.mav.set_attitude_target_send(
-        int(1e3 * (time.time() - boot_time)), # ms since boot
-        master.target_system, master.target_component,
-        # allow throttle to be controlled by depth_hold mode
-        mavutil.mavlink.ATTITUDE_TARGET_TYPEMASK_THROTTLE_IGNORE,
-        # -> attitude quaternion (w, x, y, z | zero-rotation is 1, 0, 0, 0)
-        QuaternionBase([math.radians(angle) for angle in (roll, pitch, yaw)]),
-        0, 0, 0, 0 # roll rate, pitch rate, yaw rate, thrust
-    )
+#     """
+#     master.mav.set_attitude_target_send(
+#         int(1e3 * (time.time() - boot_time)), # ms since boot
+#         master.target_system, master.target_component,
+#         # allow throttle to be controlled by depth_hold mode
+#         mavutil.mavlink.ATTITUDE_TARGET_TYPEMASK_THROTTLE_IGNORE,
+#         # -> attitude quaternion (w, x, y, z | zero-rotation is 1, 0, 0, 0)
+#         QuaternionBase([math.radians(angle) for angle in (roll, pitch, yaw)]),
+#         0, 0, 0, 0 # roll rate, pitch rate, yaw rate, thrust
+#     )
 
 # Create the connection
 master = mavutil.mavlink_connection("/dev/ttyAMA0", baud=57600)
@@ -75,20 +75,20 @@ while not master.wait_heartbeat().custom_mode == DEPTH_HOLD_MODE:
     master.set_mode(DEPTH_HOLD)
 
 # set a depth target
-set_target_depth(-0.5)
+# set_target_depth(-0.5)
 
-# go for a spin
-# (set target yaw from 0 to 500 degrees in steps of 10, one update per second)
-roll_angle = pitch_angle = 0
-for yaw_angle in range(0, 500, 10):
-    set_target_attitude(roll_angle, pitch_angle, yaw_angle)
-    time.sleep(1) # wait for a second
+# # go for a spin
+# # (set target yaw from 0 to 500 degrees in steps of 10, one update per second)
+# roll_angle = pitch_angle = 0
+# for yaw_angle in range(0, 500, 10):
+#     set_target_attitude(roll_angle, pitch_angle, yaw_angle)
+#     time.sleep(1) # wait for a second
 
-# spin the other way with 3x larger steps
-for yaw_angle in range(500, 0, -30):
-    set_target_attitude(roll_angle, pitch_angle, yaw_angle)
-    time.sleep(1)
+# # spin the other way with 3x larger steps
+# for yaw_angle in range(500, 0, -30):
+#     set_target_attitude(roll_angle, pitch_angle, yaw_angle)
+#     time.sleep(1)
 
-# clean up (disarm) at the end
-master.arducopter_disarm()
-master.motors_disarmed_wait()
+# # clean up (disarm) at the end
+# master.arducopter_disarm()
+# master.motors_disarmed_wait()

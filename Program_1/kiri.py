@@ -38,6 +38,6 @@ def kiri_lateral():
 
 
     # Turun
-    set_rc_channel_pwm(3,1200)
+    set_rc_channel_pwm(5,1500)
      # laterall kiri
     set_rc_channel_pwm(6,1300)

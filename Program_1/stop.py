@@ -38,7 +38,7 @@ def stop_4m():
 
 
     # Turun
-    set_rc_channel_pwm(3,1200)
+    set_rc_channel_pwm(3,1500)
      # stop_kiri
     set_rc_channel_pwm(5,1500)
      # stop_maju
