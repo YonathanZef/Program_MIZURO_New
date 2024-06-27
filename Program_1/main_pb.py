@@ -4,7 +4,7 @@ from maju import maju_fwd
 from kanan import kanan_laterall
 from kiri import kiri_lateral
 # from servo_open import servo_opn
-from servo_close import servo_cls
+#from servo_close import servo_cls
 from stop import stop_4m
 from emergency import emergency_1
 from mode import stabilize
@@ -34,8 +34,8 @@ def tes_q():
     master.motors_armed_wait()
     print('Armed!')
 
-    from depth import set_target_depth
-    set_target_depth(-0.5)
+    # from depth import set_target_depth
+    # set_target_depth(-2)
     maju_fwd()
     time.sleep(2)
     maju_fwd()
@@ -49,7 +49,33 @@ def tes_q():
     maju_fwd()
     time.sleep(2)
     maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+    time.sleep(2)
+    maju_fwd()
+
     stop_4m()
+
     time.sleep(2)
     kanan_laterall()
     time.sleep(2)
@@ -58,6 +84,29 @@ def tes_q():
     kanan_laterall()
     time.sleep(2)
     kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()   
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()
+    time.sleep(2)
+    kanan_laterall()  
+    stop_4m()
     # dis_arm()
 
     # time.sleep(2)

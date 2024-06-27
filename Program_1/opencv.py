@@ -4,7 +4,7 @@ import serial
 import time
 #from anja import maju, kanan
 
-def detect_object(stat):
+def detect_object():
     Winname_mask = 'Seleksi_Warna(Masking):'
 
     def nothing(x):
@@ -88,7 +88,7 @@ def detect_object(stat):
     cv.destroyAllWindows()
 
 def main():
-    if detect_object(True):
+    if detect_object():
         print("Berhasil")
         time.sleep(2)
         detect_object(False)  # Memanggil kembali fungsi detect_object setelah fungsi kanan() selesai dijalankan

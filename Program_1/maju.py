@@ -39,5 +39,6 @@ def maju_fwd():
 
     # Turun
     set_rc_channel_pwm(6,1500)
+    set_rc_channel_pwm(3,1800)
     # maju
-    set_rc_channel_pwm(5,1700)
+    set_rc_channel_pwm(5,1800)

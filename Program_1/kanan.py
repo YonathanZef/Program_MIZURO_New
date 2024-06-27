@@ -37,8 +37,10 @@ def kanan_laterall():
     print('Armed!1')
 
     # Turun
-    set_rc_channel_pwm(5, 1500)
-    # Laterall Kanan 
-    set_rc_channel_pwm(6, 1700)
+    # Turun
+    set_rc_channel_pwm(6,1800)
+    set_rc_channel_pwm(3,1800)
+    # maju
+    set_rc_channel_pwm(5,1500)
     # print("Kanan ke -", )
     # time.sleep(2)
