@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import serial
 import time
-#from anja import maju, kanan
+from kanan import kanan_laterall
 
 def detect_object():
     Winname_mask = 'Seleksi_Warna(Masking):'
@@ -19,15 +19,9 @@ def detect_object():
     cv.createTrackbar('S2', Winname_mask, 0, 255, nothing)
     cv.createTrackbar('V2', Winname_mask, 0, 255, nothing)
 
-    # Inisialisasi koneksi serial dengan ESP32
-    # esp32_serial = serial.Serial('COM4', 9600, timeout=0.1)  # Sesuaikan port dan baudrate
-
-    time.sleep(1)
-
     cap = cv.VideoCapture(0)
 
     while True:
-
         _, frame = cap.read()
         frame = cv.flip(frame, 1)  # Mirror gambar
 
@@ -46,36 +40,30 @@ def detect_object():
         contours = sorted(contours, key=lambda x: cv.contourArea(x), reverse=True)
         final = cv.bitwise_and(frame, frame, mask=masking)
 
+        if len(contours) == 0:
+            print("None")
+            kanan_laterall()
+
         # Membuat bounding rectangle pada objek
         for contour in contours:
             (x, y, w, h) = cv.boundingRect(contour)
-            # Mengirim data X dan Y melalui komunikasi serial ke ESP32
-            # string = 'X{0:d}Y{1:d}\n'.format((x + w // 2), (y + h // 2))
             string = ((x + w // 2))
-            # esp32_serial.write(string.encode('utf-8'))
-            # print(string)
-            # Plot titik tengah pada objek
             cv.circle(frame, (x + w // 2, y + h // 2), 2, (0, 255, 0), 2)
-            # Plot ROI
             cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            # Plot kotak di tengah layar
             cv.rectangle(frame, (640 // 2 - 30, 480 // 2 - 30),
                          (640 // 2 + 30, 480 // 2 + 30),
                          (0, 0, 255), 2)
-            
+           # kanan_laterall()
             if string > 350:
                 print("Kurang kiri")
-                # move_kanan()
             elif string < 290:
                 print("Kurang kanan")
-                # move_kiri()
             else:
                 print("Tengah")
                 return True
 
             break
 
-        # Menampilkan di antarmuka
         cv.imshow("Seleksi_Warna(Masking):", final)
         cv.imshow("Frame", frame)
 
@@ -91,7 +79,7 @@ def main():
     if detect_object():
         print("Berhasil")
         time.sleep(2)
-        detect_object()  # Memanggil kembali fungsi detect_object setelah fungsi kanan() selesai dijalankan
+        detect_object()
 
 if __name__ == "__main__":
     main()

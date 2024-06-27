@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 import serial
 import time
+from kanan import kanan_laterall
 #from anja import maju, kanan
 
 def detect_object():
@@ -46,12 +47,17 @@ def detect_object():
         contours = sorted(contours, key=lambda x: cv.contourArea(x), reverse=True)
         final = cv.bitwise_and(frame, frame, mask=masking)
 
+        if len(contours) == 0:
+            print("None")
+            kanan_laterall()
+            continue
+
         # Membuat bounding rectangle pada objek
         for contour in contours:
             (x, y, w, h) = cv.boundingRect(contour)
             # Mengirim data X dan Y melalui komunikasi serial ke ESP32
             # string = 'X{0:d}Y{1:d}\n'.format((x + w // 2), (y + h // 2))
-            string = ((x + w // 2))
+            string = (x + w // 2)
             # esp32_serial.write(string.encode('utf-8'))
             # print(string)
             # Plot titik tengah pada objek
@@ -62,7 +68,7 @@ def detect_object():
             cv.rectangle(frame, (640 // 2 - 30, 480 // 2 - 30),
                          (640 // 2 + 30, 480 // 2 + 30),
                          (0, 0, 255), 2)
-
+            #kanan_laterall()
             if string > 350:
                 print("Kurang kiri")
                 # move_kanan()
@@ -71,7 +77,7 @@ def detect_object():
                 # move_kiri()
             else:
                 print("Tengah")
-                return True
+                return True  # Objek berada di tengah, hentikan program
 
             break
 
@@ -90,8 +96,7 @@ def detect_object():
 def main():
     if detect_object():
         print("Berhasil")
-        time.sleep(2)
-        detect_object(False)  # Memanggil kembali fungsi detect_object setelah fungsi kanan() selesai dijalankan
+        # Tidak ada pemanggilan ulang detect_object() karena kita ingin program berhenti
 
 if __name__ == "__main__":
     main()

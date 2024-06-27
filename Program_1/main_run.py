@@ -2,12 +2,12 @@ from pymavlink import mavutil
 from maju import maju_fwd
 from kanan import kanan_laterall
 from kiri import kiri_lateral
-from servo_open import servo_opn
+# from servo_open import servo_opn
 from servo_close import servo_cls
 from stop import stop_4m
 from emergency import emergency_1
 from mode import stabilize
-from disarm import dis_arm
+# from disarm import dis_arm
 from shutdown import shtdwn
 import time
 
@@ -82,7 +82,7 @@ def run():
 
     #========== Servo Open ============#
     print("Servo Open")
-    servo_opn()
+    # servo_opn()
     time.sleep(2)
     print("================>")
 
@@ -90,7 +90,7 @@ def run():
     print("Finish")
     emergency_1()
     time.sleep(1)
-    dis_arm()
+    # dis_arm()
     time.sleep(1)
     print("================>")
 
