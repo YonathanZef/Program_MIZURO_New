@@ -40,6 +40,6 @@ def kiri_lateral():
     # Kiri on
     set_rc_channel_pwm(6,1300)
     # Throte on
-    set_rc_channel_pwm(3,1800)
+    #set_rc_channel_pwm(3,1800)
     # Maju off
     set_rc_channel_pwm(5,1500)

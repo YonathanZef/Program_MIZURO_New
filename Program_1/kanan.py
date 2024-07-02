@@ -36,11 +36,7 @@ def kanan_laterall():
     master.motors_armed_wait()
     print('Armed!1')
 
-    # Turun
-    # Turun
+
     set_rc_channel_pwm(6,1800)
-    set_rc_channel_pwm(3,1800)
-    # maju
+    #set_rc_channel_pwm(3,1800)
     set_rc_channel_pwm(5,1500)
-    # print("Kanan ke -", )
-    # time.sleep(2)
